@@ -3,20 +3,19 @@ package othello;
 import oth.Constantes;
 import oth.Oth;
 
+import java.io.IOException;
+
 import static java.util.stream.IntStream.range;
 
 public class OthPrinter implements Constantes {
 
 
-    private final Oth o;
-    private int num;
-    private int sN;
-    private int sB;
+    final Oth o;
+    int num;
 
 
     public OthPrinter(Oth o) {
         this.o = o;
-
     }
 
     @Override
@@ -50,4 +49,26 @@ public class OthPrinter implements Constantes {
     }
 
 
+    void resultat(Othello oth) {
+        oth.sN = 0;
+        oth.sB = 0;
+        range(0, 100).forEach(c -> {
+            switch (oth.o.etats[c]) {
+
+                case blanc -> oth.sB++;
+                case noir -> oth.sN++;
+            }
+        });
+
+        String R = oth.sB > oth.sN ? "1" : (oth.sN > oth.sB ? "0" : "0.5");
+        System.out.println(R + "," + oth.sB + "," + oth.sN);
+        try {
+            // R = sB > sN ? "1" : (sN > sB ? "0" : "0.5");
+            Othello.writter.write(R + "," + oth.sB + "," + oth.sN);
+            Othello.writter.write("\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
