@@ -48,7 +48,8 @@ public class Othello implements Constantes {
         while (true) {
             if (!findepartie) {
                 o.gen(o.trait);
-                o.move = new OthIA().getEvalRandom().eval(o.lcoups.stream().distinct().toList());
+                // o.move = new OthIA().getEvalRandom().eval(o.lcoups.stream().distinct().toList());
+                o.move = new OthIA().getEvalMax().eval(o.lcoups.stream().distinct().toList());
                 passe_et_findepartie();
                 o.changeside();
             } else break;

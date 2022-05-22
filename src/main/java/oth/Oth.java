@@ -2,7 +2,6 @@ package oth;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static java.util.stream.IntStream.range;
 import static java.util.stream.IntStream.rangeClosed;
@@ -114,4 +113,7 @@ public class Oth implements Constantes {
         }
     }
 
+    public record ScoreCase(Coups coups, int sum) {
+
+    }
 }
