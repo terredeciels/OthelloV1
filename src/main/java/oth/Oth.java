@@ -2,7 +2,9 @@ package oth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
+import static java.util.stream.IntStream.range;
 import static java.util.stream.IntStream.rangeClosed;
 
 
@@ -54,15 +56,11 @@ public class Oth implements Constantes {
 
     public void gen(int t) {
         trait = t;
-        for (int c = 0; c < 100; c++) {
-            if (etats[c] == vide) {
-                caseO = c;
-                lscore = new ArrayList<>();
-                for (Integer DIR : DIRS) {
-                    statemachine(DIR);
-                }
-            }
-        }
+        range(0, 100).filter(c -> etats[c] == vide).forEach(c -> {
+            caseO = c;
+            lscore = new ArrayList<>();
+            DIRS.forEach(this::statemachine);
+        });
 
     }
 
@@ -100,6 +98,7 @@ public class Oth implements Constantes {
     public record Coups(int sq0, List<Score> lscore) {
         public static Coups NOMOVE;
 
+
         @Override
         public String toString() {
             return "(" + SCASES[sq0] + ", " + lscore + ")";
@@ -109,6 +108,10 @@ public class Oth implements Constantes {
 
 
     public record Score(int n, int dir) {
+        @Override
+        public int n() {
+            return n;
+        }
     }
 
 }

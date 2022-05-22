@@ -1,5 +1,6 @@
 package othello;
 
+import eval.OthIA;
 import oth.Constantes;
 import oth.Oth;
 
@@ -8,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static eval.OthEval.eval;
 import static java.util.stream.IntStream.rangeClosed;
 import static oth.Oth.Coups.NOMOVE;
 
@@ -48,7 +48,7 @@ public class Othello implements Constantes {
         while (true) {
             if (!findepartie) {
                 o.gen(o.trait);
-                o.move = eval(o.lcoups.stream().distinct().toList());
+                o.move = new OthIA().getEvalRandom().eval(o.lcoups.stream().distinct().toList());
                 passe_et_findepartie();
                 o.changeside();
             } else break;
