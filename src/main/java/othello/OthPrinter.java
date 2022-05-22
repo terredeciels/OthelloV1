@@ -62,6 +62,7 @@ public class OthPrinter implements Constantes {
 
         String R = oth.sB > oth.sN ? "1" : (oth.sN > oth.sB ? "0" : "0.5");
         System.out.println(R + "," + oth.sB + "," + oth.sN);
+
         try {
             // R = sB > sN ? "1" : (sN > sB ? "0" : "0.5");
             Othello.writter.write(R + "," + oth.sB + "," + oth.sN);
